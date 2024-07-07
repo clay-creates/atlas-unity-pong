@@ -135,6 +135,8 @@ GameObject:
   - component: {fileID: 492069578}
   - component: {fileID: 492069577}
   - component: {fileID: 492069576}
+  - component: {fileID: 492069579}
+  - component: {fileID: 492069580}
   m_Layer: 5
   m_Name: RightGoal
   m_TagString: Goal
@@ -244,6 +246,31 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 492069574}
   m_CullTransparentMesh: 1
+--- !u!114 &492069579
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 492069574}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e93beac7a2acc4140b4089e74dfabe94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &492069580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 492069574}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 955c2afa211b5dc4fa7220c61dd3576b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreText: {fileID: 1336794789}
 --- !u!1 &708764904
 GameObject:
   m_ObjectHideFlags: 0
@@ -337,6 +364,7 @@ GameObject:
   - component: {fileID: 734063301}
   - component: {fileID: 734063300}
   - component: {fileID: 734063299}
+  - component: {fileID: 734063302}
   m_Layer: 5
   m_Name: LeftGoal
   m_TagString: Goal
@@ -446,6 +474,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 734063297}
   m_CullTransparentMesh: 1
+--- !u!114 &734063302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 734063297}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 955c2afa211b5dc4fa7220c61dd3576b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreText: {fileID: 1497830916}
 --- !u!1 &1011556295
 GameObject:
   m_ObjectHideFlags: 0
@@ -633,6 +674,7 @@ GameObject:
   - component: {fileID: 1208315427}
   - component: {fileID: 1208315426}
   - component: {fileID: 1208315425}
+  - component: {fileID: 1208315430}
   m_Layer: 5
   m_Name: Player One
   m_TagString: Paddle
@@ -673,8 +715,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upKey: 119
   downKey: 115
-  player: {fileID: 1208315423}
   paddleSpeed: 400
+  verticalInput: 0
+  topBound: 4.5
+  bottomBound: -4.5
 --- !u!114 &1208315426
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -770,6 +814,33 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1208315423}
   m_CullTransparentMesh: 1
+--- !u!50 &1208315430
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1208315423}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &1336794787
 GameObject:
   m_ObjectHideFlags: 0
@@ -904,6 +975,63 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1336794787}
   m_CullTransparentMesh: 1
+--- !u!1001 &1337739453
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1867982013}
+    m_Modifications:
+    - target: {fileID: 1407283574779498934, guid: f3c4803f5fed87a4e85e253a4171506f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1407283574779498934, guid: f3c4803f5fed87a4e85e253a4171506f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1407283574779498934, guid: f3c4803f5fed87a4e85e253a4171506f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1407283574779498934, guid: f3c4803f5fed87a4e85e253a4171506f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1407283574779498934, guid: f3c4803f5fed87a4e85e253a4171506f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1407283574779498934, guid: f3c4803f5fed87a4e85e253a4171506f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1407283574779498934, guid: f3c4803f5fed87a4e85e253a4171506f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1407283574779498934, guid: f3c4803f5fed87a4e85e253a4171506f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1407283574779498934, guid: f3c4803f5fed87a4e85e253a4171506f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1407283574779498934, guid: f3c4803f5fed87a4e85e253a4171506f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8323347952677783339, guid: f3c4803f5fed87a4e85e253a4171506f, type: 3}
+      propertyPath: m_Name
+      value: AIPlayer
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f3c4803f5fed87a4e85e253a4171506f, type: 3}
 --- !u!1 &1415349942
 GameObject:
   m_ObjectHideFlags: 0
@@ -1270,6 +1398,7 @@ GameObject:
   - component: {fileID: 1867982014}
   - component: {fileID: 1867982018}
   - component: {fileID: 1867982017}
+  - component: {fileID: 1867982019}
   m_Layer: 5
   m_Name: Player Two
   m_TagString: Paddle
@@ -1288,7 +1417,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 2040052082}
   m_Father: {fileID: 2004138214}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
@@ -1393,8 +1523,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upKey: 273
   downKey: 274
-  player: {fileID: 1867982012}
   paddleSpeed: 400
+  verticalInput: 0
+  topBound: 4.5
+  bottomBound: -4.5
 --- !u!114 &1867982018
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1407,6 +1539,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c27397c7f400184d9a3fef20dd7b36c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!50 &1867982019
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1867982012}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &2004138210
 GameObject:
   m_ObjectHideFlags: 0
@@ -1503,15 +1662,15 @@ RectTransform:
   m_Children:
   - {fileID: 1809793199}
   - {fileID: 1415349943}
-  - {fileID: 1497830915}
-  - {fileID: 1336794788}
   - {fileID: 1208315424}
   - {fileID: 1867982013}
   - {fileID: 157608221059839802}
-  - {fileID: 492069575}
+  - {fileID: 1497830915}
   - {fileID: 734063298}
-  - {fileID: 708764905}
+  - {fileID: 1336794788}
+  - {fileID: 492069575}
   - {fileID: 1070961656}
+  - {fileID: 708764905}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1519,6 +1678,11 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!4 &2040052082 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1407283574779498934, guid: f3c4803f5fed87a4e85e253a4171506f, type: 3}
+  m_PrefabInstance: {fileID: 1337739453}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &157608221059839801
 PrefabInstance:
   m_ObjectHideFlags: 0

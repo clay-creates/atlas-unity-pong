@@ -1,26 +1,46 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-
     [SerializeField] public KeyCode upKey;
     [SerializeField] public KeyCode downKey;
 
-    public GameObject player;
-
     public float paddleSpeed = 10f;
+    public float verticalInput;
 
-    // Update is called once per frame
+    public float topBound = 4.5f;
+    public float bottomBound = -4.5f;
+
     void Update()
     {
+        /*if (Input.GetKeyDown(KeyCode.Escape) && Time.timeScale == 0)
+        {
+            Time.timeScale = 1;
+        }
+        else if (Input.GetKeyDown(KeyCode.Escape) && Time.timeScale == 1)
+        {
+            Time.timeScale = 0;
+        }*/
+    }
+
+    private void FixedUpdate()
+    {
         MovePaddle();
+/*
+        if (transform.position.y > topBound)
+        {
+            transform.position = new Vector3(transform.position.x, topBound, 0);
+        }
+        else if (transform.position.y < bottomBound)
+        {
+            transform.position = new Vector3(transform.position.x, bottomBound, 0);
+        }*/
     }
 
     void MovePaddle()
     {
-        float verticalInput = 0;
+        verticalInput = 0;
+
         if (Input.GetKey(upKey))
         {
             verticalInput = 1;
