@@ -3,9 +3,9 @@ using UnityEngine;
 
 public class Ball : MonoBehaviour
 {
-    public float initialSpeed = 5f; // Initial speed of the ball
-    public float minBounceAngle = 25f; // Minimum bounce angle (degree)
-    public float maxBounceAngle = 75f; // Maximum bounce angle (degrees)
+    public float initialSpeed = 5f;
+    public float speedIncrement = 0.1f;
+    public float maxSpeed = 20f;
     private Rigidbody2D rb;
     private Vector2 initialDirection;
 
@@ -17,7 +17,6 @@ public class Ball : MonoBehaviour
 
     void LaunchBall()
     {
-        // Choose a random direction for the initial launch
         float randomDirection = Random.Range(0, 2) == 0 ? -1 : 1;
         initialDirection = new Vector2(randomDirection, Random.Range(-1f, 1f)).normalized;
         rb.velocity = initialDirection * initialSpeed;
@@ -25,37 +24,52 @@ public class Ball : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        // Ensure the ball maintains constant speed after a collision
-        rb.velocity = rb.velocity.normalized * initialSpeed;
+        // Adjust the ball's speed incrementally
+        if (rb.velocity.magnitude < maxSpeed)
+        {
+            rb.velocity = rb.velocity.normalized * (rb.velocity.magnitude + speedIncrement);
+        }
 
+        if (collision.gameObject.CompareTag("Paddle"))
+        {
+            // Calculate reflection angle based on where the ball hits the paddle
+            Vector2 paddlePosition = collision.transform.position;
+            Vector2 hitPoint = transform.position;
+            float difference = hitPoint.y - paddlePosition.y;
+            float hitFactor = difference / collision.collider.bounds.size.y;
+            Vector2 direction = new Vector2(rb.velocity.x, hitFactor).normalized;
+            rb.velocity = direction * Mathf.Min(rb.velocity.magnitude + speedIncrement, maxSpeed);
+        }
+        else
+        {
+            rb.velocity = rb.velocity.normalized * Mathf.Min(rb.velocity.magnitude + speedIncrement, maxSpeed);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Paddle")
+        if (collision.CompareTag("Paddle"))
         {
-            // Calculate reflection of velocity against surface
-            Vector2 reflection = Vector2.Reflect(rb.velocity, collision.transform.up);
-
-            // Set bounce angle
-            float bounceAngle = Random.Range(minBounceAngle, maxBounceAngle);
-            Quaternion rotation = Quaternion.Euler(0, 0, bounceAngle);
-            Vector2 adjustedReflection = rotation * reflection;
-
-            // Apply new velocity
-            rb.velocity = adjustedReflection.normalized * initialSpeed;
+            // Calculate reflection angle based on where the ball hits the paddle
+            Vector2 paddlePosition = collision.transform.position;
+            Vector2 hitPoint = transform.position;
+            float difference = hitPoint.y - paddlePosition.y;
+            float hitFactor = difference / collision.bounds.size.y;
+            Vector2 direction = new Vector2(rb.velocity.x, hitFactor).normalized;
+            rb.velocity = direction * rb.velocity.magnitude;
+        }
+        else if (collision.CompareTag("Goal"))
+        {
+            // Handle goal detection
+            ResetBall();
         }
     }
 
     public void ResetBall()
     {
-        // Stop the ball's movement
         rb.velocity = Vector2.zero;
-
-        // Reset the ball's position to the center of the screen
-        transform.position = Vector2.zero;
-
-        // Launch the ball again after a short delay
+        transform.position = Vector2.zero; // Adjust as needed
+        initialSpeed = 5f; // Reset the speed to the initial value
         StartCoroutine(LaunchBallWithDelay(1f));
     }
 
